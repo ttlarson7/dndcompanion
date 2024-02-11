@@ -16,6 +16,7 @@ module.exports = {
         primary: '#FA4343',
         secondary: '#A84993',
         tertiary: '#1C1C1C',
+        quad: '#A84993',
         w: '#FFFFFF',
         warning: '#F6E05E',
         success: '#68D391',

@@ -11,7 +11,7 @@ export default function LandingNav({ page }) {
             <div className="sticky top-0 z-50">
                 <div className="flex w-full h-16 bg-primary glass items-center justify-between">
                     <div className="flex">
-                        <button className="btn btn-active btn-ghost ml-5 text-tertiary">Beaver Brains</button>
+                        <button className="btn btn-active btn-ghost ml-5 text-tertiary">Character Cove</button>
                         <SignedIn>
                             <div className="ml-5">
                                 <Link to="/home" className="btn btn-outline btn-tertiary bg-black">Get Started</Link>
@@ -20,11 +20,31 @@ export default function LandingNav({ page }) {
                     </div>
                     <div className="mr-5">
                         <SignedOut>
-                            <Link to="/Login" className="btn btn-outline btn-warning text-white mr-5">Sign In</Link>
+                            <Link to="/login" className="btn btn-outline btn-warning text-white mr-5">Sign In</Link>
                         </SignedOut>
                         <SignedIn>
                             <UserButton />
                         </SignedIn>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+    if (page === 2) {
+        return (
+            <div className="sticky top-0 z-50">
+                <div className="flex w-full h-16 bg-primary glass items-center justify-between">
+                    <div className="flex">
+                        <button className="btn btn-active btn-ghost ml-5 text-tertiary">Character Cove</button>
+                    </div>
+                    <div className="mr-5">
+                        <div className="flex items-center">
+                        <Link to="/profile" className="btn btn-outline btn-tertiary bg-black mr-5">Profile</Link>
+                        <SignedIn>
+                            <UserButton />
+                        </SignedIn>
+                        </div>
+                        
                     </div>
                 </div>
             </div>
