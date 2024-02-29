@@ -2,10 +2,10 @@ import { Link } from "react-router-dom"
 import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/clerk-react"
 import { useUser } from "@clerk/clerk-react"
 import { useState } from "react"
-import { UserContext } from "../App"
+
 
 export default function LandingNav({ page }) {
-    const [user, setUser] = useState(UserContext)
+    
 
     
     if (page === 1) {
@@ -26,8 +26,9 @@ export default function LandingNav({ page }) {
                             <Link to="/login" className="btn btn-outline btn-warning text-white mr-5">Sign In</Link>
                         </SignedOut>
                         <div className="flex items-center">
-                        <Link to="/profile" className="btn btn-outline btn-tertiary bg-black mr-5">Profile</Link>
-                        <SignedIn>
+                        
+                            <SignedIn>
+                            <Link to="/profile" className="btn btn-outline btn-tertiary bg-black mr-5">Profile</Link>
                             <UserButton />
                         </SignedIn>
                         </div>
@@ -45,6 +46,7 @@ export default function LandingNav({ page }) {
                     </div>
                     <div className="mr-5">
                         <div className="flex items-center">
+                        <button className="btn btn-outline btn-tertiary bg-black mr-5">Create Character</button>
                         <Link to="/profile" className="btn btn-outline btn-tertiary bg-black mr-5">Profile</Link>
                         <SignedIn>
                             <UserButton />
