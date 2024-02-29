@@ -17,6 +17,7 @@ module.exports = {
         secondary: '#A84993',
         tertiary: '#1C1C1C',
         quad: '#A84993',
+        muted: '#E18485',
         w: '#FFFFFF',
         warning: '#F6E05E',
         success: '#68D391',
