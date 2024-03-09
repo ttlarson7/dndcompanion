@@ -28,6 +28,13 @@ export default function CharacterCard({ character, index } ) {
     }
     const handleSave = () => {
         updateCharacterDescription(index, editedDescription);
+        updateCharacterAbilities(index, editedAbilities);
+        updateCharacterItems(index, editedItems);
+        updateCharacterStats(index, editedStats);
+        updateCharacterLevel(index, editedLevel);
+        updateCharacterClass(index, editedClass);
+        updateCharacterName(index, editedName);
+
         closeModal();
       };
 
@@ -35,15 +42,24 @@ export default function CharacterCard({ character, index } ) {
         <div className="card w-96 bg-muted m-5 shadow-xl">
         <div className="card-body">
         <h2 className="card-title">{editedName} </h2>
-            <p>{character.characterClass}</p>
+                <p>{character.characterClass}</p>
+                
         <div className="card-actions justify-end">
                     <button className="btn btn-primary" onClick={()=>document.getElementById(`my_modal_${index}`).showModal()}>Edit</button>
                     <dialog id={`my_modal_${index}`} className="modal" open={modalOpen}>
-                    <div className="modal-box max-w-screen-lg w-full flex flex-col">
-                        <h3 className="font-bold text-5xl self-center">{editedName}</h3>
+                        <div className="modal-box max-w-screen-lg w-full flex flex-col">
+                            <input className="font-bold text-5xl text-center self-center bg-transparent rounded " type="text" value={editedName} onChange={(e) => setEditedName(e.target.value)}></input>
+                            <div className="m-5 self-center">
+                            <label className="text-3xl self-center mt-4">Class:</label>
+                            <input className="text-3xl text-center bg-transparent rounded" type="text" value={editedClass} onChange={(e) => setEditedClass(e.target.value)}></input>
+                            </div>
+                            <div className="m-5 self-center">
+                            <label className="text-3xl self-center mt-4">Level:</label>
+                            <input className="text-3xl text-center bg-transparent rounded" type="text" value={editedLevel} onChange={(e) => setEditedLevel(e.target.value)}></input>
+                            </div>
                             <h1 className="py-4 self-center mt-4 text-3xl">Stats</h1>
                             <hr class="h-px my-4 bg-gray-200 border-0 dark:bg-gray-700" />
-                            
+
                             <h1 className="py-4 self-center mt-4 text-3xl">Description</h1>
                             <hr class="h-px my-4 bg-gray-200 border-0 dark:bg-gray-700"/>
                             <textarea className="textarea textarea-bordered text-lg min-h-40 resize-y" value={editedDescription} placeholder="Description" onChange={(e) => setEditedDescription(e.target.value)}></textarea>
