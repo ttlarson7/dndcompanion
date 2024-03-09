@@ -13,7 +13,7 @@ export default function LandingNav({ page }) {
             <div className="sticky top-0 z-50">
                 <div className="flex w-full h-16 bg-primary glass items-center justify-between">
                     <div className="flex">
-                        <button className="btn btn-active btn-ghost ml-5 text-tertiary">Character Cove</button>
+                    <Link to="/" className="btn btn-active btn-ghost ml-5 text-tertiary">Character Cove</Link>
                         <SignedIn>
                             <div className="ml-5">
                                 <Link to="/home" className="btn btn-outline btn-tertiary bg-black">Get Started</Link>
@@ -42,7 +42,7 @@ export default function LandingNav({ page }) {
             <div className="sticky top-0 z-50">
                 <div className="flex w-full h-16 bg-primary glass items-center justify-between">
                     <div className="flex">
-                        <button className="btn btn-active btn-ghost ml-5 text-tertiary">Character Cove</button>
+                    <Link to="/" className="btn btn-active btn-ghost ml-5 text-tertiary">Character Cove</Link>
                     </div>
                     <div className="mr-5">
                         <div className="flex items-center">
@@ -63,7 +63,7 @@ export default function LandingNav({ page }) {
             <div className="sticky top-0 z-50">
                 <div className="flex w-full h-16 bg-primary glass items-center justify-between">
                     <div className="flex">
-                        <button className="btn btn-active btn-ghost ml-5 text-tertiary">Character Cove</button>
+                        <Link to="/" className="btn btn-active btn-ghost ml-5 text-tertiary">Character Cove</Link>
                     </div>
                     <div className="mr-5">
                         <div className="flex items-center">
