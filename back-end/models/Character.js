@@ -6,6 +6,10 @@ const characterSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    deleted: {
+        type: Boolean,
+        required: true,
+    },
     characterName: {
         type: String,
         required: true,
@@ -28,6 +32,10 @@ const characterSchema = new mongoose.Schema({
     },
     characterItems: {
         type: String,
+        required: true,
+    },
+    characterStats: {
+        type: Array,
         required: true,
     }
     

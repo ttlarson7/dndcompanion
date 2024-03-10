@@ -2,12 +2,13 @@ import React from 'react';
 import { useState, useContext } from 'react';
 import { CharacterContext } from '../App';
 
+
 export default function CharacterCard({ character, index } ) {
     const [modalOpen, setModalOpen] = useState(false)
     const [editedDescription, setEditedDescription] = useState(character.characterDescription);
     const [editedAbilities, setEditedAbilities] = useState(character.characterAbilities);
     const [editedItems, setEditedItems] = useState(character.characterItems);
-    const [editedStats, setEditedStats] = useState(character.stats);
+    const [editedStats, setEditedStats] = useState(character.characterStats);
     const [editedLevel, setEditedLevel] = useState(character.characterLevel);
     const [editedClass, setEditedClass] = useState(character.characterClass);
     const [editedName, setEditedName] = useState(character.characterName);
@@ -18,7 +19,13 @@ export default function CharacterCard({ character, index } ) {
     const { updateCharacterLevel } = useContext(CharacterContext);
     const { updateCharacterClass } = useContext(CharacterContext);
     const { updateCharacterName } = useContext(CharacterContext);
-
+    const changeStats = (index, value) => {
+        setEditedStats(prevStats => {
+            const updatedStats = [...prevStats];
+            updatedStats[index] = value;
+            return updatedStats;
+        });
+    };
 
     const openModal = () => {
         setModalOpen(true)
@@ -34,7 +41,23 @@ export default function CharacterCard({ character, index } ) {
         updateCharacterLevel(index, editedLevel);
         updateCharacterClass(index, editedClass);
         updateCharacterName(index, editedName);
-
+        console.log(character._id)
+        const response = fetch(`/api/character/update?characterId=${character._id}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                characterName: editedName,
+                characterLevel: editedLevel,
+                characterClass: editedClass,
+                characterDescription: editedDescription,
+                characterAbilities: editedAbilities,
+                characterItems: editedItems,
+                characterStats: editedStats
+            }),
+            }
+    );
         closeModal();
       };
 
@@ -59,6 +82,14 @@ export default function CharacterCard({ character, index } ) {
                             </div>
                             <h1 className="py-4 self-center mt-4 text-3xl">Stats</h1>
                             <hr class="h-px my-4 bg-gray-200 border-0 dark:bg-gray-700" />
+                            <div className="flex justify-center">
+                                <input type="number" className="input input-bordered text-3xl w-28" placeholder="STR" onChange={(e) => changeStats(0, e.target.value)} value={editedStats[0]} />
+                                    <input type="number" className="input input-bordered text-3xl w-28" placeholder="DEX" onChange={(e) => changeStats(1, e.target.value)} value={editedStats[1]} />
+                                    <input type="number" className="input input-bordered text-3xl w-28" placeholder="CON" onChange={(e) => changeStats(2, e.target.value)} value={editedStats[2]} />
+                                    <input type="number" className="input input-bordered text-3xl w-28" placeholder="INT" onChange={(e) => changeStats(3, e.target.value)} value={editedStats[3]} />
+                                    <input type="number" className="input input-bordered text-3xl w-28" placeholder="WIS" onChange={(e) => changeStats(4, e.target.value)} value={editedStats[4]} />
+                                    <input type="number" className="input input-bordered text-3xl w-28" placeholder="CHA" onChange={(e) => changeStats(5, e.target.value)} value={editedStats[5]} />
+                            </div>
 
                             <h1 className="py-4 self-center mt-4 text-3xl">Description</h1>
                             <hr class="h-px my-4 bg-gray-200 border-0 dark:bg-gray-700"/>
@@ -71,10 +102,10 @@ export default function CharacterCard({ character, index } ) {
                             <h1 className="py-4 self-center mt-4 text-3xl">Items</h1>
                             <hr class="h-px my-4 bg-gray-200 border-0 dark:bg-gray-700"/>
                             <textarea className="textarea textarea-bordered text-lg min-h-40 resize-y" value={editedItems} placeholder="Items" onChange={(e) => setEditedItems(e.target.value)}></textarea>
-                            
+                            <button className="btn" onClick={() =>{console.log(editedStats)}}/>
                         <div className="modal-action">
-                        <form method="dialog">
-                        <button className="btn" onClick={handleSave}>
+                                <form method="dialog">
+                                <button className="btn" onClick={handleSave}>
                             Save
                         </button>
                         </form>

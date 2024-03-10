@@ -13,7 +13,7 @@ export const CharacterContext = createContext()
 
 function App() {
 
-  const [characters, setCharacters] = useState([{characterName: "Billy", characterClass: "fighter", characterLevel: 1, stats: [10,10,10,10,10,10], characterDescription:"He is billbBob", characterAbilities:"Billy can do billy things", characterItems:"Earth"}, {characterName: "Steve", characterClass: "fighter", characterLevel: 1, stats: [10,10,10,10,10,10], characterDescription:"He is billy", characterAbilities:"Billy can do billy things", characterItems:"Earth"}])
+  const [characters, setCharacters] = useState([])
   const [user, setUser] = useState(null)
   const [numCharacters, setNumCharacters] = useState(0)
   const updateCharacterDescription = (index, newDescription) => {
