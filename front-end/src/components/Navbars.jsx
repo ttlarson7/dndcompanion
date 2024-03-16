@@ -8,7 +8,9 @@ import { useContext } from "react"
 export default function LandingNav({ page }) {
     
     const setNumCharacters = useContext(CharacterContext).setNumCharacters;
+    const numCharacters = useContext(CharacterContext).numCharacters;
     const { setCharacters } = useContext(CharacterContext);
+    const { setDeletedCharacters } = useContext(CharacterContext);
     const user = useUser().user;
     const getUser = async () => {
         try {
@@ -45,6 +47,7 @@ export default function LandingNav({ page }) {
             const data = await response.json()
                 .then(data => {
                     setCharacters(data);
+                    setDeletedCharacters(data.filter(character => character.deleted === true));
                 });
             
         } catch (error) {
@@ -102,7 +105,9 @@ export default function LandingNav({ page }) {
         console.log(stats)
         if (characterName === "" || characterClass === "" || characterLevel === 0 || characterDescription === "" || characterAbilities === "" || characterItems === "") {
             window.alert('Make sure to fill in all elements!');
+            return;  
         }
+        
         try {
             const response = await fetch('/api/character/new', {
                 method: 'POST',
@@ -124,6 +129,43 @@ export default function LandingNav({ page }) {
         } catch (error){
             console.error(error);
         }
+        try {
+            const response = await fetch(`/api/user/update/numCharacters`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    userId: user.id,
+                    numCharacters: numCharacters + 1,
+                }),
+            });
+            
+        } catch (error) {
+            console.error('Error:', error);
+        }
+        
+        setNumCharacters(numCharacters + 1);
+        setCharacters(prevCharacters => {
+            const updatedCharacters = [...prevCharacters];
+            updatedCharacters.push({
+                userId: user.id,
+                deleted: false,
+                characterName: characterName,
+                characterClass: characterClass,
+                characterLevel: characterLevel,
+                characterDescription: characterDescription,
+                characterAbilities: characterAbilities,
+                characterItems: characterItems,
+                characterStats: stats,
+            });
+            return updatedCharacters;
+        });
+
+        
+
+
+
     };
 
     const [diceRoll, setDiceRoll] = useState(0);
@@ -133,7 +175,7 @@ export default function LandingNav({ page }) {
    
 
     const rollDice = () => {
-        const ws = new WebSocket('ws://localhost:8080'); // Replace with your server URL
+        const ws = new WebSocket('ws://localhost:8080'); 
 
     ws.onopen = () => {
       console.log('Connected to WebSocket server');
@@ -145,14 +187,11 @@ export default function LandingNav({ page }) {
       // Received a message from the server
       const data = JSON.parse(event.data);
       setDiceRoll(data.number);
-      console.log('Received dice roll:', data.number);
-
-      // Close the WebSocket connection
+        console.log('Received dice roll:', data.number);
       ws.close();
     };
 
     ws.onerror = (error) => {
-      // WebSocket error occurred
       console.error('WebSocket error:', error.message);
     };
 
@@ -240,7 +279,7 @@ export default function LandingNav({ page }) {
                     </div>
                     <div className="mr-5">
                         <div className="flex items-center">
-                        <Link to="/" className="btn btn-outline btn-tertiary bg-black mr-5">Home</Link>
+                        <Link to="/home" className="btn btn-outline btn-tertiary bg-black mr-5">Home</Link>
                         <SignedIn>
                             <UserButton />
                         </SignedIn>
