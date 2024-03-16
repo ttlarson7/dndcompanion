@@ -14,6 +14,7 @@ export const CharacterContext = createContext()
 function App() {
 
   const [characters, setCharacters] = useState([])
+  const [deletedCharacters, setDeletedCharacters] = useState([])
   const [user, setUser] = useState(null)
   const [numCharacters, setNumCharacters] = useState(0)
   const updateCharacterDescription = (index, newDescription) => {
@@ -80,6 +81,8 @@ function App() {
         updateCharacterName,
         numCharacters,
         setNumCharacters,
+        deletedCharacters,
+        setDeletedCharacters,
       }
     
     }>

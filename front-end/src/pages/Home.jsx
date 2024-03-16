@@ -17,7 +17,7 @@ export default function Home() {
     return (
         <div>
             <Navbars page={2} />
-            <div className="flex justify-center mt-10">
+            <div className="flex justify-center mt-10 flex-wrap">
             {hasCharacters && characters.map((character, index) => (
                     <CharacterCard character={character} index={index} key={index} />
                 ))}

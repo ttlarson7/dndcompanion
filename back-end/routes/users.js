@@ -32,5 +32,19 @@ router.get("/get", async (req, res) => {
     }
 });
 
+router.post("/update/numCharacters", async (req, res) => {
+    try {
+        const userId = req.body.userId;
+        const numCharacters = req.body.numCharacters;
+        const user = await User.findOneAndUpdate({ userId: userId }, { numCharacters: numCharacters }, { new: true }).exec();
+        res.status(200).send(user);
+
+    } catch (error)
+    {
+        console.error('Error:', error);
+        res.status(500).send('Internal Server Error');
+    }
+})
+
 
 export default router;
