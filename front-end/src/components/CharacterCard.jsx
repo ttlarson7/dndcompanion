@@ -113,7 +113,7 @@ export default function CharacterCard({ character, index } ) {
                     
                     <div className="card-actions justify-between mt-5">
                         <button className="btn btn-error" onClick={handleDelete}>Delete</button>
-                        <button className="btn btn-primary" onClick={()=>document.getElementById(`my_modal_${index}`).showModal()}>Edit</button>
+                        <button className="btn btn-primary" onClick={()=>document.getElementById(`my_modal_${index}`).showModal()}>Use</button>
                         <dialog id={`my_modal_${index}`} className="modal" open={modalOpen}>
                             <div className="modal-box max-w-screen-lg w-full flex flex-col">
                                 <input className="font-bold text-5xl text-center self-center bg-transparent rounded " type="text" value={editedName} onChange={(e) => setEditedName(e.target.value)}></input>
@@ -147,7 +147,7 @@ export default function CharacterCard({ character, index } ) {
                                 <h1 className="py-4 self-center mt-4 text-3xl">Items</h1>
                                 <hr class="h-px my-4 bg-gray-200 border-0 dark:bg-gray-700"/>
                                 <textarea className="textarea textarea-bordered text-lg min-h-40 resize-y" value={editedItems} placeholder="Items" onChange={(e) => setEditedItems(e.target.value)}></textarea>
-                                <button className="btn" onClick={() =>{console.log(editedStats)}}/>
+                                
                             <div className="modal-action">
                                     <form method="dialog">
                                     <button className="btn" onClick={handleSave}>
