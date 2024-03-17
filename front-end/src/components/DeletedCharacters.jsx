@@ -5,6 +5,7 @@ import { CharacterContext } from "../App";
 
 export default function DeletedCharacters({ character, onRecover, index }) {
      
+    
     if (character.deleted === false) {
         return null;
     }

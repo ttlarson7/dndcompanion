@@ -259,7 +259,8 @@ export default function LandingNav({ page }) {
                         </div>
                     </div>
                     </dialog>
-                        <Link to="/profile" className="btn btn-outline btn-tertiary bg-black mr-5">Profile</Link>
+                            <Link to="/profile" className="btn btn-outline btn-tertiary bg-black mr-5">Profile</Link>
+                            <Link to="/help" className="btn btn-outline btn-tertiary bg-black mr-5 rounded-full">?</Link>
                         <SignedIn>
                             <UserButton />
                         </SignedIn>

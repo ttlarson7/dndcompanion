@@ -8,6 +8,7 @@ import Login from './pages/Login'
 import Home from './pages/Home'
 import Landing from './pages/Landing'
 import Profile from './pages/Profile'
+import Help from './pages/Help'
 
 export const CharacterContext = createContext()
 
@@ -108,6 +109,19 @@ function App() {
               <>
                 <SignedIn>
                   <Profile />
+                </SignedIn>
+                <SignedOut>
+                  <RedirectToSignIn />
+                </SignedOut>
+              </>
+            }
+        />
+         <Route
+            path="/help"
+            element={
+              <>
+                <SignedIn>
+                  <Help />
                 </SignedIn>
                 <SignedOut>
                   <RedirectToSignIn />
